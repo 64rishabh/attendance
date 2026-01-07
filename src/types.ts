@@ -11,3 +11,10 @@ export const LoginUserSchema = z.object({
   email : z.email(),
   password : z.string()
 })
+
+export const meUserSchema = z.object({
+  _id : z.string(),
+  name : z.string(),
+  email : z.email(),
+  role : z.enum(["teacher","student"])
+});

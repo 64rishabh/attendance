@@ -1,12 +1,8 @@
 import { Request, Response } from "express"
-import { LoginUserSchema, SignupUserSchema } from "../types";
+import { LoginUserSchema, meUserSchema, SignupUserSchema } from "../types";
 import { UserModel } from "../models/models";
 import  jwt  from "jsonwebtoken";
 
-export const getMe = async(req:Request,res:Response) =>{
-    res.send("hello this is your profile");
-    console.log("getMe end point");
-}
 
 export const signup = async(req:Request, res: Response) =>{
     const {success, data} = SignupUserSchema.safeParse(req.body);
@@ -49,7 +45,7 @@ export const login = async(req:Request , res: Response) =>{
     const{success,data} = LoginUserSchema.safeParse(req.body);
     if(!success){
         res.status(400).json({
-            "success" : "false",
+            "success" : false,
             "error" : "Invalid Email or password"
         })
         return;
@@ -61,7 +57,7 @@ export const login = async(req:Request , res: Response) =>{
 
     if(!userInDb || userInDb.password != data.password){
         res.status(400).json({
-            "success" : "false",
+            "success" : false,
             "error" : "Invalid Email or password"
         })
         return;
@@ -81,3 +77,15 @@ export const login = async(req:Request , res: Response) =>{
     
 }
 
+export const me = async(req:Request , res: Response) =>{
+    const {success,data} = meUserSchema.safeParse(req.body);
+    if(!success){
+        res.status(400).json({
+            "success" : false,
+            "error" : "Invalid Data"
+        })
+        return;
+    }
+
+    //find user and send data back
+}
