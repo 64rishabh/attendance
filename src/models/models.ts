@@ -1,6 +1,7 @@
 import mongoose, { isObjectIdOrHexString, Schema } from "mongoose";
 
-//mongoose.connect(process.env.MONGO_URL!);
+
+mongoose.connect(process.env.DB_CONNECTION_STRING!);
 
 const userSchema = new Schema({
   name: String,
@@ -38,5 +39,5 @@ const AttendanceSchema = new Schema({
 })
 
 export const UserModel = mongoose.model("User",userSchema);
-export const ClassModel = mongoose.model("Class",userSchema);
-export const AttendanceModel = mongoose.model("Attendance",userSchema);
+export const ClassModel = mongoose.model("Class",classSchema);
+export const AttendanceModel = mongoose.model("Attendance",AttendanceSchema);
