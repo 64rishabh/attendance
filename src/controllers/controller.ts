@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { LoginUserSchema, meUserSchema, SignupUserSchema } from "../types";
+import { LoginUserSchema, meUserSchema, SignupUserSchema } from "../types/types";
 import { UserModel } from "../models/models";
 import jwt from "jsonwebtoken";
 
